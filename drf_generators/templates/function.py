@@ -20,8 +20,12 @@ urlpatterns = format_suffix_patterns(urlpatterns)
 
 FUNCTION_VIEW = """from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from {{ app }}.models import {{ models | join:', ' }}
-from {{ app }}.serializers import {{ serializers | join:', ' }}
+from {{ app }}.models import (
+    {{ models | join:',' }}
+)
+from {{ app }}.serializers import (
+    {{ serializers | join:',' }}
+)
 {% for model in models %}
 
 @api_view(['GET', 'POST'])
