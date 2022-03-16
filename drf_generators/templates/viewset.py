@@ -17,8 +17,13 @@ urlpatterns = router.urls
 VIEW_SET_VIEW = """from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
-from {{ app }}.serializers import {{ serializers|join:', ' }}
-from {{ app }}.models import {{ models|join:', ' }}
+from {{ app }}.serializers import (
+    {{ serializers|join:',' }}
+)
+from {{ app }}.models import (
+    {{ models|join:',' }}
+)
+
 {% for model in models %}
 
 class {{ model }}ViewSet(ViewSet):
