@@ -18,8 +18,12 @@ urlpatterns = [
 API_VIEW = """from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from {{ app }}.serializers import {{ serializers|join:', ' }}
-from {{ app }}.models import {{ models|join:', ' }}
+from {{ app }}.serializers import (
+  {{ serializers|join:',' }}
+)
+from {{ app }}.models import (
+  {{ models|join:',' }}
+)
 {% for model in models %}
 
 class {{ model }}APIView(APIView):
