@@ -15,8 +15,12 @@ urlpatterns = router.urls
 
 
 MODEL_VIEW = """from rest_framework.viewsets import ModelViewSet
-from {{ app }}.serializers import {{ serializers|join:', ' }}
-from {{ app }}.models import {{ models|join:', ' }}
+from {{ app }}.serializers import (
+    {{ serializers|join:',' }}
+)
+from {{ app }}.models import (
+    {{ models|join:',' }}
+)
 {% for model in models %}
 
 class {{ model }}ViewSet(ModelViewSet):
